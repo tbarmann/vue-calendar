@@ -1,0 +1,28 @@
+{
+  "events": [
+    { 
+      "id": 1,
+      "date": { "month": 3, "day": 10, "year": 2021 },
+      "name": "Dentist appt",
+      "time": "10am"
+    },
+    { 
+      "id": 2,
+      "date": { "month": 3, "day": 6, "year": 2021 },
+      "name": "Tim's birthday",
+      "time": null
+    },
+    { 
+      "id": 3,
+      "date": { "month": 3, "day": 12, "year": 2021 },
+      "name": "Deadline for grant application",
+      "time": null
+    },
+    { 
+      "id": 4,
+      "date": { "month": 2, "day": 3, "year": 2021 },
+      "name": "Lynn's birthday",
+      "time": null
+    }
+  ]
+}

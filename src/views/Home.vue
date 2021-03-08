@@ -1,18 +1,17 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <Month :monthNumber="2" :year="2021" :events="[1, 2, 3]" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import Month from "@/components/Month.vue"; // @ is an alias to /src
 
 export default Vue.extend({
   name: "Home",
   components: {
-    HelloWorld
+    Month
   }
 });
 </script>
