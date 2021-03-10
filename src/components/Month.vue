@@ -29,11 +29,13 @@
 
 <script>
 import axios from "axios";
+import { mapGetters, mapActions } from 'vuex';
 import helpers from "@/mixins/helpers";
+
 import Cell from "@/components/Cell";
 export default {
   name: "Month",
-  components: { Cell },
+  components: { Cell, RotateSquare2 },
   mixins: [helpers],
   data() {
     return {
@@ -42,6 +44,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(['isLoading']),
     monthArray: function() {
       const monthNumber = this.$route.params.month - 1;
       const year = this.$route.params.year;
@@ -58,14 +61,18 @@ export default {
     },    
   },
   methods: {
+    ...mapActions(['setIsLoading', 'setLoadingErrorMessage', 'clearLoadingErrorMessage']),
     eventsByDayNumber: function(dayNumber) {
       return this.events.filter((e) => e.date.day === dayNumber);
     },
     fetchEvents: function() {
-    const url = `/api/events?date.month=${this.$route.params.month}&date.year=${this.$route.params.year}`
-    axios.get(url)
-      .then(res => this.events = res.data)
-      .catch(err => console.log(err));
+      this.setIsLoading(true);
+      this.clearLoadingErrorMessage();
+      const url = `/api/events?date.month=${this.$route.params.month}&date.year=${this.$route.params.year}`
+      axios.get(url)
+        .then(res => this.events = res.data)
+        .catch(err => this.setLoadingErrorMessage(err))
+        .finally(() => this.setIsLoading(false));
     }
   },
   mounted: function() {
